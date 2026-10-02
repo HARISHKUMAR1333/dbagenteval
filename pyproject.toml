@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dbagenteval"
+dynamic = ["version"]
+description = "Stage-by-stage evaluation for natural-language-to-SQL agents: score every step of the pipeline and see which one broke."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Harishkumar A" }]
+requires-python = ">=3.10"
+keywords = ["sql", "agent", "evaluation", "text-to-sql", "llm", "testing"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
+]
+dependencies = [
+    "sqlglot>=23.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.5", "mypy>=1.8", "types-PyYAML", "build", "twine"]
+
+[project.urls]
+Repository = "https://github.com/HARISHKUMAR1333/dbagenteval"
+Issues = "https://github.com/HARISHKUMAR1333/dbagenteval/issues"
+
+[project.scripts]
+dbagenteval = "dbagenteval.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = { attr = "dbagenteval.__version__" }
+
+[tool.setuptools.package-data]
+dbagenteval = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src"]
+strict = true

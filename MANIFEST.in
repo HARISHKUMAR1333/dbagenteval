@@ -1,0 +1,2 @@
+# The CLI tests run the bundled example, so it ships in the source distribution too.
+recursive-include examples *.py *.yaml
